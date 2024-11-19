@@ -1,0 +1,17 @@
+# Example 3
+constants:
+  number1: 22
+  number2: "![number1-33]"
+  
+# This is the commentary
+# Next will be the dictionary
+dictionaries:
+  computer:
+      ip-adress: "1.2.3.4"
+      port: 1
+      name: "admin"
+      password: "1234"
+
+# abcdefg
+constants:
+  name: "Sam"
