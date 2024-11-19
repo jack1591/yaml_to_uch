@@ -51,17 +51,33 @@ void calculate(string name,string val){
             constants[name] = to_string(stod(first)+stod(second));
         else {
             if (first[0]>='0' && first[0]<='9'){
-                if (constants[second]=="")
-                    output+="Error!\n";
+                if (constants[second]==""){
+                    output="Error - uninitialized variable!\n";
+                    std::cerr << "Error - uninitialized variable!\n" << endl;
                     //cout<<"Error!\n";
+                    exit(1);
+                }
+                    
                 else constants[name] = to_string(stod(first)+stod(constants[second]));
             }
-            else {
-                if (constants[first]=="")
-                    output+="Error!\n";
+            else if (second[0]>='0' && second[0]<='9'){
+                if (constants[first]==""){
+                    output="Error - uninitialized variable!\n";
+                    std::cerr << "Error - uninitialized variable!\n" << endl;
                     //cout<<"Error!\n";
-
+                    exit(1);
+                }
                 else constants[name] = to_string(stod(second)+stod(constants[first]));
+            }
+            else {
+                if (constants[first]=="" || constants[second]==""){
+                    output="Error - uninitialized variable!\n";
+                    std::cerr << "Error - uninitialized variable!\n" << endl;
+                    //cout<<"Error!\n";
+                    exit(1);
+                }
+                else constants[name] = to_string(stod(constants[first])+stod(constants[second]));
+                
             }
         }
     }
@@ -76,16 +92,32 @@ void calculate(string name,string val){
             constants[name] = to_string(stod(first)-stod(second));
         else {
             if (first[0]>='0' && first[0]<='9'){
-                if (constants[second]=="")
-                    output+="Error!\n";
+                if (constants[second]==""){
+                    output="Error - uninitialized variable!\n";
+                    std::cerr << "Error - uninitialized variable!\n" << endl;
                     //cout<<"Error!\n";
+                    exit(1);
+                }
                 else constants[name] = to_string(stod(first)-stod(constants[second]));
             }
-            else {
-                if (constants[first]=="")
-                    output+="Error!\n"; 
+            else if (second[0]>='0' && second[0]<='9'){
+                if (constants[first]==""){
+                    output="Error - uninitialized variable!\n"; 
+                    std::cerr << "Error - uninitialized variable!\n" << endl;
                     //cout<<"Error!\n";
+                    exit(1);
+                }
                 else constants[name] = to_string(stod(constants[first])-stod(second));
+            }
+            else {
+                if (constants[first]=="" || constants[second]==""){
+                    output="Error - uninitialized variable!\n";
+                    std::cerr << "Error - uninitialized variable!\n" << endl;
+                    //cout<<"Error!\n";
+                    exit(1);
+                }
+                else constants[name] = to_string(stod(constants[first])-stod(constants[second]));
+                
             }
         }
     }
@@ -105,20 +137,36 @@ void calculate(string name,string val){
             constants[name] = to_string(min(stod(first),stod(second)));
         else {
             if (first[0]>='0' && first[0]<='9'){
-                if (constants[second]=="")
-                    output+="Error!\n";
+                if (constants[second]==""){
+                    output="Error - uninitialized variable!\n";
+                    std::cerr << "Error - uninitialized variable!\n" << endl;
                     //cout<<"Error!\n";
-                else constants[name] = to_string(min(stod(first),stod(second)));
+                    exit(1);
+                }
+                else constants[name] = to_string(min(stod(first),stod(constants[second])));
+            }
+            else if (second[0]>='0' && second[0]<='9'){
+                if (constants[first]==""){
+                    output="Error - uninitialized variable!\n";
+                    std::cerr << "Error - uninitialized variable!\n" << endl;
+                    //cout<<"Error!\n";
+                    exit(1);
+                }
+                else constants[name] = to_string(min(stod(constants[first]),stod(second)));
             }
             else {
-                if (constants[first]=="")
-                    output+="Error!\n";
+                if (constants[first]=="" || constants[second]==""){
+                    output="Error - uninitialized variable!\n";
+                    std::cerr << "Error - uninitialized variable!\n" << endl;
                     //cout<<"Error!\n";
-                else constants[name] = to_string(min(stod(first),stod(second)));
+                    exit(1);
+                }
+                else constants[name] = to_string(min(stod(constants[first]),stod(constants[second])));
+                
             }
         }
     }
-    else output+="Error - no such operation!\n";//cout<<"Error - no such operation!\n";
+    else output="Error - no such operation!\n";//cout<<"Error - no such operation!\n";
     //cout<<name<<" "<<constants[name]<<endl;
     output+=name+" "+constants[name]+"\n";
 }
@@ -276,8 +324,8 @@ vector<tek_comment> count_comments(string name_of_file){
 #ifndef UNIT_TEST
 int main(int argc, char* argv[]){
     yaml_path = argv[1];
-    comments = count_comments("config_test2.yaml");
-    YAML::Node config = YAML::LoadFile(yaml_path+"config_test2.yaml");
+    comments = count_comments("example2.yaml");
+    YAML::Node config = YAML::LoadFile(yaml_path+"example2.yaml");
     if (comments[0].first==0)
         outComments();
     parseFile(config);

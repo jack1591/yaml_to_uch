@@ -1,0 +1,20 @@
+# Example 2
+constants:
+  first: 100
+  second: 30
+  third: 15
+
+dictionaries:
+  user1:
+      username: "john_doe"
+      email: "john@example.com"
+      age: "![first-second]"
+  user2:
+      username: "lalo"
+      email: "lalo_nobody@mail.ru"
+      age: "![third+second]"
+  user3:
+      username: "heisenberg"
+      email: "chemistry@gmail.com"
+      age: "![min(first,third)]"
+        

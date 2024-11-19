@@ -1,0 +1,12 @@
+# First example
+#Number of pupils in some grade
+constants:
+  A_class: 28
+  B_class: 25
+  C_class: 30
+
+constants:
+  AB_class: "![A_class+B_class]"
+  #Result
+  parallel: "![AB_class+C_class]"
+    
