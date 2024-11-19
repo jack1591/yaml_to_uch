@@ -9,9 +9,29 @@ constants:
   timeout: 30
   discount: 0.15
 
-# Список функций
-features:
-  - name: "Feature A"
-    enabled: true
-  - name: "Feature B"
-    enabled: false
+# Константы
+constants:
+  max_users: 100
+  timeout: 30
+  discount_rate: 0.15
+
+# Словари
+dictionaries:
+  user_info:
+      username: "john_doe"
+      email: "john@example.com"
+      age: 12
+    
+  server_settings:
+      ip_address: "192.168.1.1"
+      port: "abc"
+      active: false
+    
+
+# Вычисления
+calculations:
+  - ![max_users + 50]       # Увеличение максимального числа пользователей
+  - ![timeout - 10]         # Снижение тайм-аута
+  - ![min(max_users, 200)]  # Минимум между max_users и 200
+  - ![discount_rate * 100]  # Преобразование скидки в проценты
+
