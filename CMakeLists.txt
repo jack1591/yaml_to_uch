@@ -13,3 +13,11 @@ add_executable(third main.cpp)
 
 # Свяжите проект с библиотекой yaml-cpp
 target_link_libraries(third PRIVATE yaml-cpp)
+
+# Добавьте googletest
+add_subdirectory(googletest)
+
+add_executable(tests test_main.cpp)
+
+# Свяжите тесты с библиотеками gtest и yaml-cpp
+target_link_libraries(tests PRIVATE gtest gtest_main yaml-cpp)

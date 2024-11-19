@@ -222,7 +222,7 @@ void parseFile(const YAML::Node& node){
 vector<tek_comment> count_comments(){
     int count_real = 0;
     vector<tek_comment> comm;
-    ifstream fin("config.yaml");
+    ifstream fin(yaml_path+"config.yaml");
     string tek="";
     while (getline(fin,tek))
         if (tek.size()>0){  
@@ -252,7 +252,7 @@ int main(int argc, char* argv[]){
     yaml_path = argv[1];
     //cout<<"path to yaml file is "<<yaml_path<<endl;
     comments = count_comments();
-    YAML::Node config = YAML::LoadFile("config.yaml");
+    YAML::Node config = YAML::LoadFile(yaml_path+"config.yaml");
     if (comments[0].first==0)
         outComments();
     parseFile(config);
