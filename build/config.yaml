@@ -1,34 +1,38 @@
-# Конфигурация приложения
-title: "My YAML File"
-version: 1.0
-enabled: true
-
-# Настройки
-constants:
+# application 
+# application 2
+# settings
+constants: #proverka
   myNumber: 100
   myOtherNumber: 30
   discount: 0.15
 
-# Константы
+# constants
 constants:
   maxLimit: 100
   timeout: 30
-  discount_rate: 0.15
+  discount_rate: 0.15 #another one
+#ccc
+#ddd
 
-# Словари
 dictionaries:
+# dictionary
+#aaa
+#bbb
   user_info:
       username: "john_doe"
+      #testik
       email: "john@example.com"
       age: 12
     
   server_settings:
       ip_address: "192.168.1.1"
       port: "abc"
+      #test1
+      #test2
       active: false
     
 
-# Вычисления
+# calculations
 calculations:
   - "![myNumber + 10]"
   - "![myOtherNumber - 5]"
