@@ -324,8 +324,8 @@ vector<tek_comment> count_comments(string name_of_file){
 #ifndef UNIT_TEST
 int main(int argc, char* argv[]){
     yaml_path = argv[1];
-    comments = count_comments("example3.yaml");
-    YAML::Node config = YAML::LoadFile(yaml_path+"example3.yaml");
+    comments = count_comments("config.yaml");
+    YAML::Node config = YAML::LoadFile(yaml_path+"config.yaml");
     if (comments[0].first==0)
         outComments();
     parseFile(config);

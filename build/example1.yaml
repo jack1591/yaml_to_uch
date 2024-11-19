@@ -9,4 +9,3 @@ constants:
   AB_class: "![A_class+B_class]"
   #Result
   parallel: "![AB_class+C_class]"
-    

@@ -39,7 +39,7 @@ TEST(AddTest, HandlesPositiveInput_3) {
     if (comments[0].first==0)
         outComments();
     parseFile(config);
-    string prov = "/+\n This is the program\n+/\nmyNumber : 100; \nmyOtherNumber : 30; \ndiscount : 0.15; \nip_address 123.000000\n\nmaxLimit : 100; \ntimeout : 30; \ndiscount_rate : 0.15; \nvalue 20.150000\n\n";
+    string prov = "/+\n This is the program\n+/\nmyNumber : 100; \nmyOtherNumber : 30; \ndiscount : 15; \nip_address 123.000000\n\nmaxLimit : 100; \ndiscount : 30; \ndiscount_rate : 0.15; \nvalue 20.150000\n\n";
     EXPECT_EQ(output,prov);
 }
 
