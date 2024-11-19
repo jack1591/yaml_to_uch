@@ -1,41 +1,27 @@
 # application 
 # application 2
 # settings
-constants: #proverka
-  myNumber: 100
+constants:
+  myNumber: 100 #this is comment
   myOtherNumber: 30
   discount: 0.15
 
-# constants
+#this is comment number 2
 constants:
   maxLimit: 100
+  #this is comment number 3
   timeout: 30
-  discount_rate: 0.15 #another one
-#ccc
-#ddd
+  discount_rate: 0.15
+  value: "![20+discount_rate]"
 
 dictionaries:
-# dictionary
-#aaa
-#bbb
   user_info:
       username: "john_doe"
-      #testik
       email: "john@example.com"
-      age: 12
-    
+      #this is comment number 4
+      #this is comment number 5
+      age: "![timeout-15]"
   server_settings:
-      ip_address: "192.168.1.1"
+      ip_address: "![min(123,321.2)]"
       port: "abc"
-      #test1
-      #test2
-      active: false
-    
-
-# calculations
-calculations:
-  - "![myNumber + 10]"
-  - "![myOtherNumber - 5]"
-  - "![min(myNumber, maxLimit)]"
-  - "![myNumber + maxLimit - 50]"
-
+      active: false  
