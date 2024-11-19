@@ -5,13 +5,13 @@ enabled: true
 
 # Настройки
 constants:
-  max_users: 100
-  timeout: 30
+  myNumber: 100
+  myOtherNumber: 30
   discount: 0.15
 
 # Константы
 constants:
-  max_users: 100
+  maxLimit: 100
   timeout: 30
   discount_rate: 0.15
 
@@ -30,8 +30,8 @@ dictionaries:
 
 # Вычисления
 calculations:
-  - ![max_users + 50]       # Увеличение максимального числа пользователей
-  - ![timeout - 10]         # Снижение тайм-аута
-  - ![min(max_users, 200)]  # Минимум между max_users и 200
-  - ![discount_rate * 100]  # Преобразование скидки в проценты
+  - "![myNumber + 10]"
+  - "![myOtherNumber - 5]"
+  - "![min(myNumber, maxLimit)]"
+  - "![myNumber + maxLimit - 50]"
 
