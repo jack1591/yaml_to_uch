@@ -1,0 +1,12 @@
+# This is the program
+constants:
+  myNumber: 100
+  myOtherNumber: 30
+  discount: 0.15
+  ip_address: "![min(123,321.2)]"
+      
+constants:
+  maxLimit: 100
+  timeout: 30
+  discount_rate: 0.15
+  value: "![20+discount_rate]"

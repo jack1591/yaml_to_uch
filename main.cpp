@@ -5,7 +5,7 @@
 #include <Windows.h>
 #include <vector>
 using namespace std;
-string yaml_path;
+string yaml_path, output;
 int cnt,tek;
 map<string,string> constants;
 
@@ -19,13 +19,16 @@ vector <tek_comment> comments;
 
 void outComments(){
     int i = tek;
-    cout<<"/+\n"<<comments[i].second<<endl;
+    //cout<<"/+\n"<<comments[i].second<<endl;
+    output+="/+\n"+comments[i].second+"\n";
     i++;
     while (i<comments.size() && comments[i].first==comments[i-1].first){
-        cout<<comments[i].second<<endl;
+        //cout<<comments[i].second<<endl;
+        output+=comments[i].second+"\n";
         i++;
     }
-    cout<<"+/\n";
+    //cout<<"+/\n";
+    output+="+/\n";
     tek = i;
     if (i==comments.size())
         tek = 0;
@@ -49,12 +52,15 @@ void calculate(string name,string val){
         else {
             if (first[0]>='0' && first[0]<='9'){
                 if (constants[second]=="")
-                    cout<<"Error!\n";
+                    output+="Error!\n";
+                    //cout<<"Error!\n";
                 else constants[name] = to_string(stod(first)+stod(constants[second]));
             }
             else {
                 if (constants[first]=="")
-                    cout<<"Error!\n";
+                    output+="Error!\n";
+                    //cout<<"Error!\n";
+
                 else constants[name] = to_string(stod(second)+stod(constants[first]));
             }
         }
@@ -71,12 +77,14 @@ void calculate(string name,string val){
         else {
             if (first[0]>='0' && first[0]<='9'){
                 if (constants[second]=="")
-                    cout<<"Error!\n";
+                    output+="Error!\n";
+                    //cout<<"Error!\n";
                 else constants[name] = to_string(stod(first)-stod(constants[second]));
             }
             else {
                 if (constants[first]=="")
-                    cout<<"Error!\n";
+                    output+="Error!\n"; 
+                    //cout<<"Error!\n";
                 else constants[name] = to_string(stod(constants[first])-stod(second));
             }
         }
@@ -98,18 +106,21 @@ void calculate(string name,string val){
         else {
             if (first[0]>='0' && first[0]<='9'){
                 if (constants[second]=="")
-                    cout<<"Error!\n";
+                    output+="Error!\n";
+                    //cout<<"Error!\n";
                 else constants[name] = to_string(min(stod(first),stod(second)));
             }
             else {
                 if (constants[first]=="")
-                    cout<<"Error!\n";
+                    output+="Error!\n";
+                    //cout<<"Error!\n";
                 else constants[name] = to_string(min(stod(first),stod(second)));
             }
         }
     }
-    else cout<<"Error - no such operation!\n";
-    cout<<name<<" "<<constants[name]<<endl;
+    else output+="Error - no such operation!\n";//cout<<"Error - no such operation!\n";
+    //cout<<name<<" "<<constants[name]<<endl;
+    output+=name+" "+constants[name]+"\n";
 }
 
 void outValues(const YAML::Node& values){
@@ -122,16 +133,19 @@ void outValues(const YAML::Node& values){
              calculate(name,val);
         else {
             constants[name]=val;
-            cout << name << " : " << val << "; ";
+            output+=name+" : "+val+"; ";
+            //cout << name << " : " << val << "; ";
         }
 
         if (cnt+1==comments[tek].first && comments[tek].pos==0){
-            cout<<"\n";
+            //cout<<"\n";
+            output+="\n";
             outComments();
         }
         else if (cnt==comments[tek].first && comments[tek].pos!=0)
             outComments();           
-        cout<<"\n";
+        //cout<<"\n";
+        output+="\n";
     }
 }
 
@@ -145,32 +159,38 @@ void outValuesInMap(const YAML::Node& values){
              calculate(name,val);
         else {
             constants[name]=val;
-            cout << name << " : " << val << "; ";
+            output+=name+" : "+val+"; ";
+            //cout << name << " : " << val << "; ";
         }
         
         if (cnt+1==comments[tek].first && comments[tek].pos==0){
-            cout<<"\n";
+            //cout<<"\n";
+            output+="\n";
             outComments();
         }
         else if (cnt==comments[tek].first && comments[tek].pos!=0)
             outComments();           
-        cout<<"\n";
+        //cout<<"\n";
+        output+="\n";
     }
 }
 void outDictionaries(const YAML::Node& values){
     for (auto dict:values){
         string name = dict.first.as<std::string>();
         cnt++;
-        cout << name << ": \n{\n";
+        //cout << name << ": \n{\n";
+        output+=name+": \n{\n";
         if (cnt+1==comments[tek].first && comments[tek].pos==0){
-            cout<<"\n";
+            //cout<<"\n";
+            output+="\n";
             outComments();
         }
         else if (cnt==comments[tek].first && comments[tek].pos!=0)
             outComments();  
         const YAML::Node& dictionary = dict.second;
         outValuesInMap(dictionary);
-        cout << "};\n";
+        //cout << "};\n";
+        output+="};\n";
     }
 }
 
@@ -182,7 +202,8 @@ void parseFile(const YAML::Node& node){
         if (key=="constants"){
             
             if (cnt+1==comments[tek].first && comments[tek].pos==0){
-                cout<<"\n";
+                //cout<<"\n";
+                output+="\n";
                 outComments();
             }
             else if (cnt==comments[tek].first && comments[tek].pos!=0)
@@ -193,17 +214,21 @@ void parseFile(const YAML::Node& node){
         else if (key=="dictionaries"){
             //cout<<key<<" "<<cnt<<endl;
             if (cnt+1==comments[tek].first && comments[tek].pos==0){
-                cout<<"\n";
+                //cout<<"\n";
+                output+="\n";
                 outComments();
             }
             else if (cnt==comments[tek].first && comments[tek].pos!=0)
                 outComments();
             outDictionaries(value);
         }
+        /*
         else if (key=="calculations"){
             //cout<<key<<" " <<cnt<<endl;
             if (cnt+1==comments[tek].first && comments[tek].pos==0){
-                cout<<"\n";
+                output+="\n";
+                //cout<<"\n";
+
                 outComments();
             }
             else if (cnt==comments[tek].first && comments[tek].pos!=0)
@@ -215,14 +240,14 @@ void parseFile(const YAML::Node& node){
                 cnt++;
             }
         }
-
+        */
     }   
 }
 
-vector<tek_comment> count_comments(){
+vector<tek_comment> count_comments(string name_of_file){
     int count_real = 0;
     vector<tek_comment> comm;
-    ifstream fin(yaml_path+"config.yaml");
+    ifstream fin(yaml_path+name_of_file);
     string tek="";
     while (getline(fin,tek))
         if (tek.size()>0){  
@@ -248,13 +273,15 @@ vector<tek_comment> count_comments(){
     return comm;
 }
 
+#ifndef UNIT_TEST
 int main(int argc, char* argv[]){
     yaml_path = argv[1];
-    //cout<<"path to yaml file is "<<yaml_path<<endl;
-    comments = count_comments();
-    YAML::Node config = YAML::LoadFile(yaml_path+"config.yaml");
+    comments = count_comments("config_test2.yaml");
+    YAML::Node config = YAML::LoadFile(yaml_path+"config_test2.yaml");
     if (comments[0].first==0)
         outComments();
     parseFile(config);
+    cout<<output;
    return 0;
 }
+#endif

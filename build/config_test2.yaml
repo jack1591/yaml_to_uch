@@ -1,0 +1,15 @@
+#This is the program
+constants:
+  myNumber: 100
+  myOtherNumber: 30
+  discount: 0.15
+
+dictionaries:
+  user_info:
+      username: "john_doe"
+      email: "john@example.com"
+      #this is comment number 4
+      #this is comment number 5
+  server_settings:
+      port: "abc"
+      active: false  
