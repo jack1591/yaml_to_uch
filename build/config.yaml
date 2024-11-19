@@ -1,0 +1,17 @@
+# Конфигурация приложения
+title: "My YAML File"
+version: 1.0
+enabled: true
+
+# Настройки
+constants:
+  max_users: 100
+  timeout: 30
+  discount: 0.15
+
+# Список функций
+features:
+  - name: "Feature A"
+    enabled: true
+  - name: "Feature B"
+    enabled: false
