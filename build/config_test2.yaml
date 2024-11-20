@@ -1,15 +1,19 @@
 #This is the program
+#Example1
 constants:
-  myNumber: 100
+  myNumber: 100 #Example2
+  #Example
   myOtherNumber: 30
-  discount: 0.15
+  discount: "![10+myNumber]"
+#example
 
 dictionaries:
   user_info:
-      username: "john_doe"
-      email: "john@example.com"
+      username: 15
       #this is comment number 4
       #this is comment number 5
+      email: 178 #123
   server_settings:
-      port: "abc"
-      active: false  
+      port: 12
+      active: 1  
+#qwerty
