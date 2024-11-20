@@ -129,6 +129,7 @@ mingw32-make
 1. **Преобразование файла config_test1.yaml - константы**
 2. **Преобразование файла config_test2.yaml - константы и словари**
 3. **Преобразование файла config_test3.yaml - вычисления константного выражения и переопределение переменной**
+4. **Попытка использования неизвестной переменной**
 
 Содержимое файла test_main.cpp:
 ```
@@ -179,4 +180,13 @@ TEST(AddTest, HandlesPositiveInput_3) {
 ```
 
 Результаты тестирования
-![tests](https://github.com/user-attachments/assets/f0c9a37a-ec05-4037-92d6-01fb49fbc007)
+![tests](https://github.com/user-attachments/assets/f0c9a37a-ec05-4037-92d6-01fb49fbc007)  
+
+### Тест №4
+**Попытка использования неизвестной переменной**  
+Содержимое исходного файла  
+![example41](https://github.com/user-attachments/assets/7033d2de-f869-4697-8cba-550b128d021d)
+
+Результат  
+![example42](https://github.com/user-attachments/assets/b7d2600a-0eca-4a39-9e99-365302dd8d15)
+
